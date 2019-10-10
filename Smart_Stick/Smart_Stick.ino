@@ -1,7 +1,7 @@
 #define trigPin  12
 #define echoPin  13
 #define trigPin1  4
-#define echoPin1  5
+#define echoPin1  3
 #define Buzzer 7
 
 void setup ()
@@ -41,9 +41,9 @@ void loop ()
      distance1 = (duration1/2) / 29.1;
      digitalWrite(trigPin1, LOW);
      
-  if (distance<70 || distance>0 && distance1>=70)
+  if (distance<70  && distance1>=70)
        {
-       Serial.println("object detected \n");
+       Serial.print("\nobject detected LEFT = ");
        Serial.print("distance= ");
        Serial.print(distance);
        digitalWrite(Buzzer, HIGH);
@@ -52,8 +52,8 @@ void loop ()
        
   if (distance>=70 && distance1<70)
        {
-       Serial.println("object detected \n");
-       Serial.print("distance1= ");
+       Serial.print("\nobject detected RIGHT ");
+       Serial.print("distance1 = ");
        Serial.print(distance1);
        digitalWrite(Buzzer, HIGH);
        tone(Buzzer,5000);
@@ -61,13 +61,13 @@ void loop ()
        
   if (distance<70 && distance1<70)
        {
-       Serial.println("object detected");
+       Serial.print("object detected CENTRE = ");
        digitalWrite(Buzzer, HIGH);
        tone(Buzzer,7000);   
        }
   if(distance>70 && distance1>70) 
        {
-        Serial.println("no object detected");
+        Serial.println("NO object detected");
         digitalWrite(Buzzer, LOW);
         noTone(Buzzer);
        }     
